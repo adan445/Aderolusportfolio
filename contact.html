@@ -1,539 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Contact | Adan Derolus</title>
-    <meta name="description" content="Contact Adan Derolus for IT support, infrastructure, system administration, and technical opportunities.">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    <style>
-        :root {
-            --bg: #f7f9fc;
-            --surface: rgba(255, 255, 255, 0.92);
-            --surface-solid: #ffffff;
-            --primary: #2563eb;
-            --primary-dark: #1d4ed8;
-            --primary-soft: #eff6ff;
-            --text: #0f172a;
-            --muted: #64748b;
-            --border: #e2e8f0;
-            --shadow: 0 24px 70px rgba(15, 23, 42, 0.10);
-        }
-
-        * { box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-
-        body {
-            margin: 0;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            font-family: 'Inter', sans-serif;
-            color: var(--text);
-            background:
-                radial-gradient(circle at 12% 18%, rgba(37, 99, 235, 0.10), transparent 28%),
-                radial-gradient(circle at 90% 25%, rgba(96, 165, 250, 0.13), transparent 24%),
-                linear-gradient(180deg, #ffffff 0%, var(--bg) 100%);
-            overflow-x: hidden;
-        }
-
-        body::before,
-        body::after {
-            content: "";
-            position: fixed;
-            z-index: -1;
-            border-radius: 50%;
-            opacity: 0.45;
-            animation: floatOrb 10s ease-in-out infinite;
-        }
-
-        body::before {
-            width: 280px;
-            height: 280px;
-            background: rgba(59, 130, 246, 0.16);
-            top: 110px;
-            left: -110px;
-        }
-
-        body::after {
-            width: 340px;
-            height: 340px;
-            background: rgba(147, 197, 253, 0.18);
-            right: -150px;
-            bottom: 70px;
-            animation-delay: -4s;
-        }
-
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background: rgba(255, 255, 255, 0.82);
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
-            border-bottom: 1px solid rgba(226, 232, 240, 0.85);
-        }
-
-        .nav-inner {
-            max-width: 1180px;
-            height: 76px;
-            margin: 0 auto;
-            padding: 0 24px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .brand {
-            color: var(--text);
-            text-decoration: none;
-            font-size: 1.12rem;
-            font-weight: 800;
-            letter-spacing: -0.4px;
-            transition: color .2s ease, transform .2s ease;
-        }
-
-        .brand:hover { color: var(--primary); transform: translateY(-1px); }
-
-        .nav-links { display: flex; align-items: center; gap: 24px; }
-
-        .nav-links a {
-            position: relative;
-            color: var(--muted);
-            text-decoration: none;
-            font-size: .94rem;
-            font-weight: 600;
-            padding: 8px 0;
-            transition: color .2s ease;
-        }
-
-        .nav-links a::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            bottom: 2px;
-            width: 100%;
-            height: 2px;
-            border-radius: 999px;
-            background: var(--primary);
-            transform: scaleX(0);
-            transition: transform .25s ease;
-        }
-
-        .nav-links a:hover,
-        .nav-links a.active { color: var(--primary); }
-
-        .nav-links a:hover::after,
-        .nav-links a.active::after { transform: scaleX(1); }
-
-        main { flex: 1; width: 100%; }
-
-        .contact-section {
-            max-width: 1180px;
-            margin: 0 auto;
-            padding: 86px 24px 72px;
-        }
-
-        .page-heading {
-            max-width: 720px;
-            margin: 0 auto 42px;
-            text-align: center;
-            animation: fadeUp .75s ease both;
-        }
-
-        .eyebrow {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 14px;
-            padding: 8px 13px;
-            border: 1px solid #bfdbfe;
-            border-radius: 999px;
-            background: var(--primary-soft);
-            color: var(--primary);
-            font-size: .79rem;
-            font-weight: 800;
-            letter-spacing: .08em;
-            text-transform: uppercase;
-        }
-
-        .eyebrow::before {
-            content: "";
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: var(--primary);
-            box-shadow: 0 0 0 5px rgba(37, 99, 235, .10);
-        }
-
-        .page-heading h1 {
-            margin: 0 0 16px;
-            font-size: clamp(2.4rem, 5vw, 4.2rem);
-            line-height: 1.02;
-            letter-spacing: -2px;
-        }
-
-        .page-heading p {
-            margin: 0 auto;
-            max-width: 640px;
-            color: var(--muted);
-            font-size: 1.06rem;
-            line-height: 1.8;
-        }
-
-        .contact-card {
-            display: grid;
-            grid-template-columns: .9fr 1.35fr;
-            max-width: 1000px;
-            margin: 0 auto;
-            overflow: hidden;
-            border: 1px solid rgba(226, 232, 240, .95);
-            border-radius: 28px;
-            background: rgba(255, 255, 255, .88);
-            box-shadow: var(--shadow);
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
-            animation: cardReveal .85s .12s ease both;
-        }
-
-        .info-panel {
-            position: relative;
-            overflow: hidden;
-            padding: 52px 44px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            background: linear-gradient(145deg, #2563eb 0%, #1d4ed8 62%, #1e40af 100%);
-            color: white;
-        }
-
-        .info-panel::before,
-        .info-panel::after {
-            content: "";
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, .10);
-        }
-
-        .info-panel::before { width: 220px; height: 220px; top: -90px; right: -80px; }
-        .info-panel::after { width: 180px; height: 180px; bottom: -90px; left: -70px; }
-
-        .info-content,
-        .social-links { position: relative; z-index: 1; }
-
-        .info-content h2 {
-            margin: 0 0 16px;
-            font-size: 2rem;
-            letter-spacing: -1px;
-        }
-
-        .info-content p {
-            margin: 0;
-            max-width: 360px;
-            color: rgba(255, 255, 255, .84);
-            line-height: 1.75;
-        }
-
-        .contact-points { display: grid; gap: 16px; margin-top: 30px; }
-
-        .contact-point {
-            display: flex;
-            align-items: center;
-            gap: 13px;
-            color: rgba(255, 255, 255, .92);
-            font-size: .93rem;
-            font-weight: 600;
-        }
-
-        .contact-point i {
-            width: 36px;
-            height: 36px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 11px;
-            background: rgba(255, 255, 255, .14);
-        }
-
-        .social-links { display: flex; gap: 12px; margin-top: 42px; }
-
-        .social-links a {
-            width: 44px;
-            height: 44px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 13px;
-            background: rgba(255, 255, 255, .14);
-            color: white;
-            text-decoration: none;
-            font-size: 1.05rem;
-            border: 1px solid rgba(255, 255, 255, .16);
-            transition: transform .25s ease, background .25s ease, color .25s ease;
-        }
-
-        .social-links a:hover {
-            transform: translateY(-4px) rotate(-2deg);
-            background: white;
-            color: var(--primary);
-        }
-
-        .form-panel { padding: 52px 48px; background: rgba(255, 255, 255, .96); }
-
-        .form-panel h3 {
-            margin: 0 0 8px;
-            font-size: 1.75rem;
-            letter-spacing: -.6px;
-        }
-
-        .form-intro {
-            margin: 0 0 30px;
-            color: var(--muted);
-            font-size: .95rem;
-            line-height: 1.65;
-        }
-
-        .form-group { margin-bottom: 20px; animation: fadeUp .55s ease both; }
-        .form-group:nth-of-type(1) { animation-delay: .22s; }
-        .form-group:nth-of-type(2) { animation-delay: .29s; }
-        .form-group:nth-of-type(3) { animation-delay: .36s; }
-        .form-group:nth-of-type(4) { animation-delay: .43s; }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: #334155;
-            font-size: .88rem;
-            font-weight: 700;
-        }
-
-        input,
-        textarea {
-            width: 100%;
-            border: 1px solid #cbd5e1;
-            border-radius: 13px;
-            background: #f8fafc;
-            color: var(--text);
-            font: inherit;
-            outline: none;
-            transition: border-color .2s ease, box-shadow .2s ease, background .2s ease, transform .2s ease;
-        }
-
-        input { height: 50px; padding: 0 15px; }
-        textarea { min-height: 145px; resize: vertical; padding: 14px 15px; }
-        input::placeholder, textarea::placeholder { color: #94a3b8; }
-
-        input:focus,
-        textarea:focus {
-            border-color: #60a5fa;
-            background: white;
-            box-shadow: 0 0 0 4px rgba(37, 99, 235, .10);
-            transform: translateY(-1px);
-        }
-
-        .submit-button {
-            width: 100%;
-            min-height: 52px;
-            margin-top: 2px;
-            border: 0;
-            border-radius: 13px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
-            font: inherit;
-            font-weight: 800;
-            cursor: pointer;
-            box-shadow: 0 12px 24px rgba(37, 99, 235, .22);
-            transition: transform .25s ease, box-shadow .25s ease, filter .25s ease;
-            animation: fadeUp .55s .5s ease both;
-        }
-
-        .submit-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 16px 28px rgba(37, 99, 235, .30);
-            filter: brightness(1.04);
-        }
-
-        .site-footer {
-            border-top: 1px solid var(--border);
-            background: rgba(255, 255, 255, .72);
-        }
-
-        .footer-content {
-            max-width: 1180px;
-            min-height: 96px;
-            margin: 0 auto;
-            padding: 20px 24px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 20px;
-        }
-
-        .copyright { margin: 0; color: var(--muted); font-size: .88rem; }
-        .footer-links { display: flex; align-items: center; gap: 12px; }
-
-        .footer-links a {
-            width: 39px;
-            height: 39px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid var(--border);
-            border-radius: 11px;
-            background: white;
-            color: #475569;
-            text-decoration: none;
-            box-shadow: 0 6px 18px rgba(15, 23, 42, .05);
-            transition: color .2s ease, border-color .2s ease, transform .2s ease, box-shadow .2s ease;
-        }
-
-        .footer-links a:hover {
-            color: var(--primary);
-            border-color: #bfdbfe;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 24px rgba(37, 99, 235, .10);
-        }
-
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(22px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes cardReveal {
-            from { opacity: 0; transform: translateY(34px) scale(.985); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
-        }
-
-        @keyframes floatOrb {
-            0%, 100% { transform: translate3d(0, 0, 0); }
-            50% { transform: translate3d(18px, -18px, 0); }
-        }
-
-        @media (max-width: 900px) {
-            .nav-links { gap: 15px; }
-            .nav-links a { font-size: .88rem; }
-            .contact-card { grid-template-columns: 1fr; max-width: 720px; }
-            .info-panel { min-height: 360px; }
-        }
-
-        @media (max-width: 720px) {
-            .nav-inner {
-                height: auto;
-                min-height: 72px;
-                padding-top: 14px;
-                padding-bottom: 14px;
-                align-items: flex-start;
-                gap: 14px;
-            }
-            .nav-links { max-width: 70%; flex-wrap: wrap; justify-content: flex-end; row-gap: 8px; }
-            .contact-section { padding: 60px 18px 52px; }
-            .info-panel, .form-panel { padding: 36px 28px; }
-            .footer-content { flex-direction: column; justify-content: center; text-align: center; padding: 24px; }
-        }
-
-        @media (max-width: 520px) {
-            .nav-inner { flex-direction: column; }
-            .nav-links { max-width: 100%; justify-content: flex-start; }
-            .contact-card { border-radius: 22px; }
-            .page-heading { margin-bottom: 30px; }
-            .page-heading p { font-size: .98rem; }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: .01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: .01ms !important;
-                scroll-behavior: auto !important;
-            }
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact | Adan Derolus</title>
+  <meta name="description" content="Contact Adan Derolus for IT infrastructure, systems administration, technical support, endpoint management, and related opportunities.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <div class="nav-inner">
-            <a href="index.html" class="brand">ADAN DEROLUS</a>
-            <nav class="nav-links" aria-label="Primary navigation">
-                <a href="index.html">Home</a>
-                <a href="experience.html">Experience</a>
-                <a href="skills.html">Skills</a>
-                <a href="interests.html">Interests</a>
-                <a href="resume.html">Résumé</a>
-                <a href="contact.html" class="active" aria-current="page">Contact</a>
-            </nav>
+  <header>
+    <div class="nav-inner">
+      <a href="index.html" class="brand">ADAN DEROLUS</a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="index.html">Home</a>
+        <a href="experience.html">Experience</a>
+        <a href="skills.html">Skills</a>
+        <a href="interests.html">Interests</a>
+        <a href="resume.html">Résumé</a>
+        <a href="contact.html" class="active" aria-current="page">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="contact-section">
+      <div class="page-heading">
+        <span class="eyebrow pill">Get in Touch</span>
+        <h1>Let’s connect.</h1>
+        <p>Open to IT support, systems administration, endpoint, infrastructure, and cybersecurity-focused opportunities.</p>
+      </div>
+
+      <div class="contact-card">
+        <aside class="info-panel">
+          <div class="info-content">
+            <h2>Start a conversation</h2>
+            <p>If you have an opportunity, project, or question, send a message and I’ll get back to you.</p>
+
+            <div class="contact-points">
+              <div class="contact-point"><i class="fa fa-map-marker" aria-hidden="true"></i><span>Boston, Massachusetts</span></div>
+              <div class="contact-point"><i class="fa fa-briefcase" aria-hidden="true"></i><span>IT Systems & Support</span></div>
+              <div class="contact-point"><i class="fa fa-graduation-cap" aria-hidden="true"></i><span>B.S. IT • Graduate Cybersecurity Study</span></div>
+            </div>
+          </div>
+
+          <div class="social-links">
+            <a href="https://www.linkedin.com/in/adan-derolus-3b166a1bb/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa fa-linkedin"></i></a>
+            <a href="mailto:adanderolus@gmail.com" aria-label="Email"><i class="fa fa-envelope"></i></a>
+          </div>
+        </aside>
+
+        <div class="form-panel">
+          <h3>Send a message</h3>
+          <p class="form-intro">Fill out the form below and your message will be sent directly to me.</p>
+
+          <form action="https://formspree.io/f/mpwdypjp" method="POST">
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" name="name" placeholder="John Doe" autocomplete="name" required>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Your Email</label>
+              <input type="email" id="email" name="email" placeholder="john@example.com" autocomplete="email" required>
+            </div>
+
+            <div class="form-group">
+              <label for="subject">Subject</label>
+              <input type="text" id="subject" name="subject" placeholder="Job opportunity, project, question..." required>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" placeholder="Write your message here..." required></textarea>
+            </div>
+
+            <button type="submit" class="submit-button">
+              <span>Send Message</span>
+              <i class="fa fa-paper-plane" aria-hidden="true"></i>
+            </button>
+          </form>
         </div>
-    </header>
+      </div>
+    </section>
+  </main>
 
-    <main>
-        <section class="contact-section">
-            <div class="page-heading">
-                <span class="eyebrow">Get in touch</span>
-                <h1>Let’s connect.</h1>
-                <p>Open to opportunities in IT infrastructure, system administration, technical support, and related technology roles.</p>
-            </div>
-
-            <div class="contact-card">
-                <aside class="info-panel">
-                    <div class="info-content">
-                        <h2>Start a conversation</h2>
-                        <p>Have an opportunity, project, or question? Send a message and I’ll get back to you.</p>
-                        <div class="contact-points">
-                            <div class="contact-point"><i class="fa fa-map-marker" aria-hidden="true"></i><span>Boston, Massachusetts</span></div>
-                            <div class="contact-point"><i class="fa fa-briefcase" aria-hidden="true"></i><span>IT Infrastructure &amp; Support</span></div>
-                        </div>
-                    </div>
-
-                    <div class="social-links">
-                        <a href="https://www.linkedin.com/in/adan-derolus-3b166a1bb/" target="_blank" rel="noopener noreferrer" aria-label="Visit LinkedIn profile"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-                        <a href="mailto:adanderolus@gmail.com" aria-label="Send an email"><i class="fa fa-envelope" aria-hidden="true"></i></a>
-                    </div>
-                </aside>
-
-                <div class="form-panel">
-                    <h3>Send a message</h3>
-                    <p class="form-intro">Fill out the form below and your message will be sent directly to me.</p>
-
-                    <form action="https://formspree.io/f/mpwdypjp" method="POST">
-                        <div class="form-group">
-                            <label for="name">Your Name</label>
-                            <input type="text" id="name" name="name" placeholder="John Doe" autocomplete="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Your Email</label>
-                            <input type="email" id="email" name="email" placeholder="john@example.com" autocomplete="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="subject">Subject</label>
-                            <input type="text" id="subject" name="subject" placeholder="Job opportunity, project, question..." required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" placeholder="Write your message here..." required></textarea>
-                        </div>
-                        <button type="submit" class="submit-button"><span>Send Message</span><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
-                    </form>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="site-footer">
-        <div class="footer-content">
-            <p class="copyright">&copy; 2026 Adan Derolus. All rights reserved.</p>
-            <div class="footer-links">
-                <a href="https://www.linkedin.com/in/adan-derolus-3b166a1bb/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-                <a href="mailto:adanderolus@gmail.com" aria-label="Email"><i class="fa fa-envelope" aria-hidden="true"></i></a>
-            </div>
-        </div>
-    </footer>
+  <footer class="site-footer">
+    <div class="footer-content">
+      <p class="copyright">&copy; 2026 Adan Derolus. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/adan-derolus-3b166a1bb/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa fa-linkedin"></i></a>
+        <a href="mailto:adanderolus@gmail.com" aria-label="Email"><i class="fa fa-envelope"></i></a>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
