@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f7f7ef">
+<meta name="description" content="Dino Dash: a tiny, playable endless runner. Jump the cacti, beat your best, and take a little break.">
+<title>Dino Dash — A little break. A big leap.</title>
+<script>if(new URLSearchParams(location.search).has('embed'))document.documentElement.classList.add('embed');</script>
+<style>
+*{box-sizing:border-box} :root{--ink:#243e39;--paper:#f7f7ef;--accent:#e86b42;--muted:#6c7c73;--line:#d7ded0}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Arial,Helvetica,sans-serif} button{font:inherit;cursor:pointer} button:focus-visible,a:focus-visible{outline:3px solid var(--accent);outline-offset:5px} .wrap{max-width:1120px;margin:auto;padding:34px 36px 24px}header{display:flex;align-items:center;justify-content:space-between;padding-bottom:22px;border-bottom:1px solid var(--line)}.brand{font-size:20px;font-weight:800;letter-spacing:-.7px;display:flex;align-items:center;gap:10px}.brand-icon{background:var(--ink);color:var(--paper);padding:7px 9px;font:700 15px monospace;border-radius:7px}.edition,.eyebrow,.game-label,.stat-label,.tech{font:11px monospace;letter-spacing:1.6px;text-transform:uppercase}.edition{color:var(--muted)}.intro{display:flex;justify-content:space-between;align-items:flex-end;margin:48px 0 32px;gap:24px}.eyebrow{color:var(--accent);font-weight:bold;margin-bottom:16px}.eyebrow:before{content:'';display:inline-block;width:7px;height:7px;background:var(--accent);margin-right:9px}h1{font-size:clamp(38px,5vw,63px);line-height:1.04;letter-spacing:-3px;margin:0;font-weight:800}h1 span{color:var(--accent)}.intro p{max-width:260px;font-size:15px;line-height:1.65;color:var(--muted);margin:0 0 2px}.machine{border:1px solid #c7d3bf;border-radius:16px;overflow:hidden;background:#edf2e4;box-shadow:0 10px 0 #e5e9dc}.game-top{display:flex;align-items:center;justify-content:space-between;padding:17px 23px;border-bottom:1px solid #d4ddca;gap:12px}.game-label{display:flex;align-items:center;gap:9px;font-weight:bold}.dot{height:7px;width:7px;border-radius:50%;background:#839773}.stats{display:flex;gap:30px;align-items:center}.stat{display:flex;gap:10px;align-items:center}.stat-label{font-size:10px;color:var(--muted)}.number{font:700 19px monospace;min-width:5ch;letter-spacing:1px}.stage{position:relative;isolation:isolate;background:#edf2e4;touch-action:manipulation}canvas{display:block;width:100%;height:auto;aspect-ratio:1000/330;image-rendering:pixelated;touch-action:manipulation}.overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:12px;background:#edf2e459}.overlay[hidden]{display:none}.overlay-card{background:#f7f7eff2;border:1px solid #d0dac6;box-shadow:0 8px 25px #243e3910;border-radius:12px;padding:22px 40px;max-width:90%}.overlay-card h2{font-size:25px;letter-spacing:-1px;margin:0 0 8px}.overlay-card p{font-size:13px;line-height:1.5;color:var(--muted);margin:0 0 18px}.primary{border:0;border-radius:7px;background:var(--ink);color:var(--paper);padding:12px 22px;font-size:13px;font-weight:bold;box-shadow:0 3px 0 #152e28}.primary:hover{background:#35574d}.primary:active{transform:translateY(2px);box-shadow:0 1px 0 #152e28}.primary .arrow{margin-left:20px;color:#b9d698}.game-bottom{padding:14px 23px;display:flex;align-items:center;justify-content:space-between;gap:16px;background:#f2f5eb;border-top:1px solid #d4ddca}.hint{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px}kbd{display:inline-block;border:1px solid #cdd6c2;border-bottom-width:2px;border-radius:4px;padding:3px 7px;font:10px monospace;background:#fffef7;color:var(--ink)}.actions{display:flex;gap:9px}.small-btn{border:1px solid #ccd5c0;background:transparent;color:var(--ink);padding:8px 12px;border-radius:6px;font-size:12px}.small-btn:hover{background:#e3ead8}.small-btn:disabled{opacity:.4;cursor:default}.jump-btn{background:var(--ink);border-color:var(--ink);color:var(--paper);min-width:85px}.details{display:grid;grid-template-columns:repeat(3,1fr);gap:35px;margin-top:39px;padding-bottom:30px}.detail{display:flex;align-items:flex-start;gap:12px}.step{font:11px monospace;color:var(--accent);padding-top:4px}.detail h3{font-size:14px;margin:0 0 7px;letter-spacing:-.2px}.detail p{font-size:12px;line-height:1.65;color:var(--muted);margin:0;max-width:220px}footer{border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;padding-top:19px;color:var(--muted);font-size:11px}.tech{font-size:9px;letter-spacing:1px}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(max-width:650px){.wrap{padding:21px 16px}.edition{font-size:9px;letter-spacing:.7px}.intro{display:block;margin:30px 0 24px}h1{letter-spacing:-2px}.intro p{max-width:320px;margin-top:18px;font-size:14px}.game-top{padding:13px 14px}.game-label{font-size:9px;letter-spacing:.6px}.stats{gap:13px}.stat{display:block}.stat-label{font-size:8px}.number{font-size:16px;margin-top:4px;min-width:4ch}.stage{min-height:235px}canvas{height:235px;aspect-ratio:auto;object-fit:fill}.overlay-card{padding:16px 20px}.overlay-card h2{font-size:22px}.overlay-card p{margin-bottom:14px}.game-bottom{padding:12px;gap:8px}.hint{font-size:10px;gap:4px}.hint .desktop{display:none}.small-btn{padding:9px 10px}.details{gap:18px;grid-template-columns:1fr;margin-top:30px;padding-bottom:25px}.detail p{max-width:none}.detail h3{margin-bottom:4px}.tech{font-size:8px}footer{font-size:10px}.brand{font-size:18px}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
+.embed .wrap{padding:0;max-width:none}.embed header,.embed .intro,.embed .details,.embed footer{display:none}.embed .machine{border:0;box-shadow:none;border-radius:0}.embed canvas{height:300px;aspect-ratio:auto}.embed .stage{min-height:300px}@media(max-width:650px){.embed canvas{height:235px}.embed .stage{min-height:235px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+ <header><div class="brand"><span class="brand-icon" aria-hidden="true">↗</span> dino dash<span style="color:var(--accent)">.</span></div><span class="edition">A pocket-sized arcade / 01</span></header>
+ <main>
+  <section class="intro" aria-labelledby="page-title"><div><div class="eyebrow">Interests / Games</div><h1 id="page-title">No connection.<br><span>No problem.</span></h1></div><p>I love games, so here’s a little fun to share. Give this simple dinosaur runner a try!</p></section>
+  <section class="machine" aria-label="Dino Dash game">
+   <div class="game-top"><span class="game-label"><span class="dot" aria-hidden="true"></span><span id="status">Ready when you are</span></span><div class="stats"><div class="stat"><span class="stat-label">Score</span><div id="score" class="number">00000</div></div><div class="stat"><span class="stat-label">Best</span><div id="best" class="number">00000</div></div></div></div>
+   <div class="stage" id="stage"><canvas id="game" width="1000" height="330" role="img" aria-label="A small dinosaur running through a desert. Use the Jump button, Space, or Up Arrow to jump over cacti."></canvas>
+    <div class="overlay" id="overlay"><div class="overlay-card"><h2 id="overlay-title">Little dino. Big leap.</h2><p id="overlay-text">Jump the cacti. Keep the good times running.</p><button class="primary" id="start">Let’s play <span class="arrow" aria-hidden="true">→</span></button></div></div>
+   </div>
+   <div class="game-bottom"><div class="hint"><span class="desktop"><kbd>SPACE</kbd> / <kbd>↑</kbd> to jump · </span><span>Tap the game to jump</span></div><div class="actions"><button class="small-btn" id="pause" disabled aria-label="Pause game">Pause</button><button class="small-btn jump-btn" id="jump" aria-label="Jump">Jump ↗</button></div></div>
+  </section>
+  <div class="details"><div class="detail"><span class="step">01 /</span><div><h3>A well-timed leap.</h3><p>Press Space, ↑, or tap to clear each cactus. You can jump again when you land.</p></div></div><div class="detail"><span class="step">02 /</span><div><h3>Find your rhythm.</h3><p>The longer you run, the faster it gets. A little focus goes a long way.</p></div></div><div class="detail"><span class="step">03 /</span><div><h3>Make it a personal best.</h3><p>Your best score stays in this browser. There’s always one more run.</p></div></div></div>
+  <p class="sr-only" id="announce" role="status" aria-live="polite"></p>
+ </main>
+ <footer><span>A playable project by Adan Derolus</span><span class="tech">Built with HTML · CSS · JavaScript</span></footer>
+</div>
+<script>
+/* Original endless-runner physics. No dependencies or network requests. */
+class DinoDashEngine {
+  constructor(random = Math.random) { this.random = random; this.spawnX = 1040; this.reset(); }
+  reset() {
+    this.state = 'ready'; this.y = 0; this.vy = 0; this.distance = 0;
+    this.speed = 330; this.elapsed = 0; this.spawnIn = 1.8; this.obstacles = [];
+    this.jumps = 0;
+  }
+  get score() { return Math.floor(this.distance / 12); }
+  start() { this.reset(); this.state = 'running'; }
+  jump() {
+    if (this.state !== 'running' || this.y > 0.01) return false;
+    this.vy = 720; this.jumps++; return true;
+  }
+  pause() { if (this.state === 'running') this.state = 'paused'; }
+  resume() { if (this.state === 'paused') this.state = 'running'; }
+  step(dt) {
+    if (this.state !== 'running') return;
+    // Small physics steps keep collisions reliable on slow screens.
+    for (let left = Math.min(dt, 0.1); left > 0;) {
+      const t = Math.min(left, 1 / 120); left -= t;
+      this.elapsed += t; this.speed = Math.min(590, 330 + this.elapsed * 4);
+      this.distance += this.speed * t;
+      this.y += this.vy * t; this.vy -= 2100 * t;
+      if (this.y <= 0) { this.y = 0; this.vy = 0; }
+      this.spawnIn -= t;
+      if (this.spawnIn <= 0) {
+        const tall = this.random() > 0.5;
+        this.obstacles.push({ x: this.spawnX, w: tall ? 26 : 40, h: tall ? 62 : 42 });
+        this.spawnIn = 1.35 + this.random() * 0.55;
+      }
+      for (const o of this.obstacles) {
+        o.x -= this.speed * t;
+        // Forgiving hitboxes leave a small margin around the pixel artwork.
+        if (105 < o.x + o.w - 5 && 137 > o.x + 5 &&
+            265 - this.y - 5 > 265 - o.h + 5 && 265 - this.y - 52 < 265) {
+          this.state = 'over'; return;
+        }
+      }
+      this.obstacles = this.obstacles.filter(o => o.x + o.w > -20);
+    }
+  }
+}
+if (typeof module !== 'undefined') module.exports = DinoDashEngine;
+
+(() => {
+  'use strict';
+  const canvas = document.getElementById('game'), ctx = canvas.getContext('2d');
+  const engine = new DinoDashEngine();
+  const $ = id => document.getElementById(id);
+  const overlay = $('overlay'), start = $('start'), pause = $('pause');
+  let best = 0, previous = 0, shownState = '', runBest = false, W = 1000;
+  function resize(){
+    const bounds=canvas.getBoundingClientRect();
+    W=Math.max(480, Math.round(bounds.width/bounds.height*330));
+    canvas.width=W;engine.spawnX=W+40;
+  }
+  resize();window.addEventListener('resize',resize);
+  try { best = Number(localStorage.getItem('adan-dino-dash-best')) || 0; } catch {}
+  const digits = n => String(n).padStart(5, '0');
+  $('best').textContent = digits(best);
+  const dino = [
+    '          ######## ',
+    '         ##########',
+    '         ####.#####',
+    '         ##########',
+    '         ##########',
+    '         ######    ',
+    '         ######### ',
+    '#       ####       ',
+    '##     #######     ',
+    '###   ######## #   ',
+    '##############     ',
+    '##############     ',
+    ' ############      ',
+    '  ##########       ',
+    '   ########        ',
+    '    ######         ',
+    '    ### ###        ',
+    '    ##   ##        ',
+    '    ##   ##        ',
+    '    ###  ###       '
+  ];
+  function rect(x,y,w,h,c){ctx.fillStyle=c;ctx.fillRect(Math.round(x),Math.round(y),w,h);}
+  function cloud(x,y){const c='#dce5cf';rect(x,y,68,12,c);rect(x+12,y-10,36,12,c);rect(x+26,y-18,18,10,c);}
+  function drawDino(){
+    const moving = engine.state === 'running' && engine.y === 0;
+    const leg = Math.floor(engine.elapsed*12)%2;
+    const y = 265-60-engine.y;
+    // The shadow stays on the ground while the dinosaur jumps.
+    rect(94,269,48-Math.min(18,engine.y/7),3,'#c4cfb7');
+    dino.forEach((row,py)=>[...row].forEach((v,px)=>{
+      if(v===' ')return;
+      if(moving&&py>16&&((leg===0&&px<8)||(leg===1&&px>8)))return;
+      rect(90+px*3,y+py*3,3,3,v==='.'?'#edf2e4':'#243e39');
+    }));
+    rect(134,y+15,9,3,'#e86b42');
+  }
+  function cactus(o){
+    const c='#688260', x=o.x, y=265-o.h;
+    rect(x+o.w/2-5,y,10,o.h,c);rect(x+o.w/2-2,y-3,4,3,c);
+    rect(x,y+13,7,o.h*.43,c);rect(x+5,y+o.h*.58,o.w/2-5,7,c);
+    rect(x+o.w-7,y+6,7,o.h*.43,c);rect(x+o.w/2,y+o.h*.45,o.w/2-4,7,c);
+    rect(x+o.w/2-2,y+6,2,o.h-13,'#91a17b');
+  }
+  function draw(){
+    ctx.clearRect(0,0,W,330);rect(0,0,W,330,'#edf2e4');
+    const d=engine.distance;
+    rect(W-170,45,33,33,'#e6b46e');rect(W-177,52,47,19,'#e6b46e');
+    [0,1,2,3].forEach(i=>cloud(((i*290+130-d*.11)%1200+1200)%1200-100,54+(i%3)*30));
+    ctx.fillStyle='#e1e8d5';ctx.beginPath();ctx.moveTo(0,265);
+    for(let i=-1;i<7;i++){const x=i*230-(d*.07%230);ctx.lineTo(x+100,176+(i%2)*18);ctx.lineTo(x+230,265);}
+    ctx.lineTo(W,265);ctx.fill();
+    rect(0,265,W,2,'#819477');rect(0,267,W,63,'#e5e4cb');
+    for(let i=0;i<22;i++){const x=((i*73-d)%1100+1100)%1100-50;rect(x,280+(i%4)*11,4+(i%3)*4,2,'#c6c8ac');}
+    for(const o of engine.obstacles)cactus(o);
+    drawDino();
+    $('score').textContent=digits(engine.score);
+    if(engine.state!==shownState)renderState();
+  }
+  function renderState(){
+    shownState=engine.state;
+    overlay.hidden=engine.state==='running';
+    pause.disabled=!['running','paused'].includes(engine.state);
+    pause.textContent=engine.state==='paused'?'Resume':'Pause';
+    pause.setAttribute('aria-label',engine.state==='paused'?'Resume game':'Pause game');
+    $('status').textContent=({ready:'Ready when you are',running:'Keep on running',paused:'Taking a breather',over:'One more run?'})[engine.state];
+    if(engine.state==='over'){
+      runBest=engine.score>best;
+      if(runBest){best=engine.score;try{localStorage.setItem('adan-dino-dash-best',String(best));}catch{}}
+      $('best').textContent=digits(best);
+      $('overlay-title').textContent=runBest?'A new personal best!':'Cactus happens.';
+      $('overlay-text').textContent=`You scored ${engine.score}. ${runBest?'That’s a run to remember.':'Dust off. Take another leap.'}`;
+      start.innerHTML='Run it back <span class="arrow" aria-hidden="true">↻</span>';
+      $('announce').textContent=`Game over. Score ${engine.score}. Best ${best}. Press Space or Run it back to restart.`;
+    }else if(engine.state==='paused'){
+      $('overlay-title').textContent='A little breather.';
+      $('overlay-text').textContent='Your run is right where you left it.';
+      start.innerHTML='Keep running <span class="arrow" aria-hidden="true">→</span>';
+      $('announce').textContent='Game paused.';
+    }else if(engine.state==='running'){
+      $('announce').textContent='Run started. Jump over the cacti.';
+    }
+  }
+  function action(){
+    if(engine.state==='paused')engine.resume();
+    else if(engine.state!=='running'){engine.start();}
+    engine.jump(); if(engine.state!==shownState)renderState();
+  }
+  function togglePause(){
+    if(engine.state==='running')engine.pause();else if(engine.state==='paused')engine.resume();
+    renderState();
+  }
+  start.addEventListener('click',action);
+  $('jump').addEventListener('click',action);
+  pause.addEventListener('click',togglePause);
+  canvas.addEventListener('pointerdown',e=>{e.preventDefault();action();});
+  document.addEventListener('keydown',e=>{
+    if(e.target.matches('input,textarea,select')||e.target.isContentEditable)return;
+    if(e.code==='Space'||e.code==='ArrowUp'){
+      // Space on a focused button uses its native click, avoiding two actions.
+      if(e.code==='Space'&&e.target.tagName==='BUTTON')return;
+      e.preventDefault();if(!e.repeat)action();
+    }
+    if((e.code==='KeyP'||e.code==='Escape')&&!e.repeat){e.preventDefault();togglePause();}
+  });
+  document.addEventListener('visibilitychange',()=>{if(document.hidden){engine.pause();renderState();}});
+  window.addEventListener('blur',()=>{engine.pause();renderState();});
+  function frame(time){const dt=previous?Math.min((time-previous)/1000,.1):0;previous=time;engine.step(dt);draw();requestAnimationFrame(frame);}
+  draw();requestAnimationFrame(frame);
+})();
+
+</script>
+</body>
+</html>

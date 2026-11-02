@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Interests | Adan Derolus</title>
-  <meta name="description" content="Adan Derolus interests and ambitions, including cloud infrastructure, cybersecurity, sports, fitness, and entertainment.">
+  <meta name="description" content="Adan Derolus interests, including cloud infrastructure, cybersecurity, sports, entertainment, and games. Play a simple dinosaur runner right on the page.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -317,6 +317,20 @@
       line-height: 1.7;
     }
 
+    .games-card { grid-column: 1 / -1; min-height: 0; scroll-margin-top: 110px; opacity: 1; transform: none; animation: none; }
+    .games-card:hover { transform: none; }
+    .games-copy { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .games-copy h3 { display: flex; align-items: center; gap: 10px; }
+    .games-copy h3 i { color: var(--primary); }
+    .games-copy p { max-width: 670px; margin-bottom: 0; }
+    .games-link { color: var(--primary); font-size: .85rem; font-weight: 700; white-space: nowrap; text-underline-offset: 4px; }
+    .games-link:focus-visible { outline: 3px solid var(--primary); outline-offset: 5px; }
+    .game-embed { display: block; width: 100%; height: 425px; border: 0; border-top: 1px solid var(--border); background: #edf2e4; }
+    @media (max-width: 650px) {
+      .games-copy { align-items: flex-start; flex-direction: column; gap: 16px; }
+      .game-embed { height: 375px; }
+    }
+
     .quote-strip {
       position: relative;
       margin-top: 30px;
@@ -519,6 +533,16 @@
             <p>Favorites: Prison Break, Game of Thrones, and Stranger Things.</p>
             
           </div>
+        </article>
+        <article class="passion-card games-card" id="games" aria-labelledby="games-title">
+          <div class="passion-copy games-copy">
+            <div>
+              <h3 id="games-title"><i class="fa fa-gamepad" aria-hidden="true"></i> Games</h3>
+              <p>I love games, and I wanted to share a little of that fun here. Try this simple dinosaur runner and see how far you can go!</p>
+            </div>
+            <a class="games-link" href="dino-dash.html">Open full game <span aria-hidden="true">↗</span></a>
+          </div>
+          <iframe class="game-embed" src="dino-dash.html?embed=1" title="Dino Dash — playable dinosaur jumping game" loading="lazy"></iframe>
         </article>
       </div>
 
